@@ -1,6 +1,7 @@
 import 'package:app_quran/model/surah_models.dart';
 import 'package:app_quran/style/stylesheet.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CardSurah extends StatelessWidget {
   final SurahModels surah;
@@ -58,7 +59,10 @@ class CardSurah extends StatelessWidget {
                 children: [
                   Text(
                     surah.nameSurah!,
-                    style: txtBlack2,
+                    style: GoogleFonts.poppins(
+                      color: Colors.black,
+                      fontSize: 20,
+                    ),
                   ),
                   const SizedBox(
                     height: 5,
@@ -77,41 +81,9 @@ class CardSurah extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 35,
-                        height: 35,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                          border: Border.all(
-                            width: 1,
-                            color: Colors.grey,
-                          ),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.black,
-                              blurRadius: 1,
-                            ),
-                          ],
-                        ),
-                        child: Center(
-                          child: Text(
-                            surah.jumlahAyat.toString(),
-                            style: txtBlack2,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        surah.tempatTurunAyat!,
-                        style: txtBlack2,
-                      ),
-                    ],
+                  Text(
+                    surah.tempatTurunAyat!,
+                    style: txtBlack2,
                   ),
                 ],
               ),

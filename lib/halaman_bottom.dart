@@ -26,16 +26,16 @@ class _HalamanBottomState extends State<HalamanBottom> {
         body: listBottom[currentIndex],
         bottomNavigationBar: CurvedNavigationBar(
           maxWidth: double.infinity,
-          items: [
+          items: const [
             Icon(
               Icons.home,
               size: 35,
-              color: isSelected ? Colors.white : Colors.cyan,
+              color: Colors.white,
             ),
             Icon(
               Icons.account_circle,
               size: 35,
-              color: isSelected ? Colors.white : Colors.cyan,
+              color: Colors.white,
             ),
           ],
           index: currentIndex,
@@ -44,9 +44,9 @@ class _HalamanBottomState extends State<HalamanBottom> {
               currentIndex = index;
             });
           },
-          backgroundColor: Colors.white,
-          color: Colors.cyan,
-          buttonBackgroundColor: Colors.blue,
+          backgroundColor: Colors.cyan,
+          color: Colors.blue,
+          buttonBackgroundColor: Colors.cyan,
         ),
       ),
     );

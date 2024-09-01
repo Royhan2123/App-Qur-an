@@ -1,26 +1,32 @@
+import 'package:app_quran/model/ayat_models.dart';
+
 class SurahModels {
   final int? number;
   final String? nameSurah;
   final String? nameEnglishSurah;
   final String? artiAyat;
-  final int? jumlahAyat;
   final String? tempatTurunAyat;
+  final List<AyatModels>? ayat;
 
   const SurahModels({
     this.artiAyat,
     this.number,
     this.nameEnglishSurah,
     this.nameSurah,
-    this.jumlahAyat,
     this.tempatTurunAyat,
+    this.ayat,
   });
 
   factory SurahModels.fromJson(Map<String, dynamic> json) => SurahModels(
         number: json['number'],
-        artiAyat:  json['englishNameTranslation'],
+        artiAyat: json['englishNameTranslation'],
         nameEnglishSurah: json['englishName'],
         nameSurah: json['name'],
-        jumlahAyat: json['numberOfAyahs'],
         tempatTurunAyat: json["revelationType"],
+        ayat: (json["ayahs"] as List<dynamic>)
+            .map(
+              (json) => AyatModels.fromJson(json),
+            )
+            .toList(),
       );
 }
