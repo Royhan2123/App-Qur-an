@@ -18,75 +18,89 @@ class CardSurah extends StatelessWidget {
         borderRadius: BorderRadius.circular(
           10,
         ),
+        color: Colors.white,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
         children: [
-          Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white,
-              border: Border.all(
-                width: 1,
-                color: Colors.grey,
-              ),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black,
-                  blurRadius: 1,
-                ),
-              ],
-            ),
-            child: Center(
-              child: Text(
-                "1",
-                style: txtBlack,
-              ),
-            ),
-          ),
-          Column(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "Name Surah",
-                style: txtBlack,
+              Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                  border: Border.all(
+                    width: 1,
+                    color: Colors.grey,
+                  ),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 1,
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: Text(
+                    "1",
+                    style: txtBlack2,
+                  ),
+                ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
-              Text(
-                "Name English Surah",
-                style: txtBlack,
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Text(
-                "Arti Ayat",
-                style: txtBlack,
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    "Jumlah Ayat",
-                    style: txtBlack,
+                    "Name Surah",
+                    style: txtBlack2,
                   ),
                   const SizedBox(
-                    width: 10,
+                    height: 5,
                   ),
                   Text(
-                    "Tempat Turun Ayat",
-                    style: txtBlack,
+                    "Name English Surah",
+                    style: txtBlack2,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    "Arti Ayat",
+                    style: txtBlack2,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Jumlah Ayat",
+                        style: txtBlack2,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Tempat Turun Ayat",
+                        style: txtBlack2,
+                      ),
+                    ],
                   ),
                 ],
               ),
             ],
           ),
+          const SizedBox(
+            height: 20,
+          ),
+          Divider(
+            thickness: 1,
+            height: 2,
+            color: Colors.grey,
+          )
         ],
       ),
     );
