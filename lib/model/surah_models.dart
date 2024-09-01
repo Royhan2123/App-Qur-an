@@ -1,9 +1,9 @@
 class SurahModels {
-  final String? number;
+  final int? number;
   final String? nameSurah;
   final String? nameEnglishSurah;
   final String? artiAyat;
-  final String? jumlahAyat;
+  final int? jumlahAyat;
   final String? tempatTurunAyat;
 
   const SurahModels({

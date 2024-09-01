@@ -1,8 +1,13 @@
+import 'package:app_quran/model/surah_models.dart';
 import 'package:app_quran/style/stylesheet.dart';
 import 'package:flutter/material.dart';
 
 class CardSurah extends StatelessWidget {
-  const CardSurah({super.key});
+  final SurahModels surah;
+  const CardSurah({
+    super.key,
+    required this.surah,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,6 @@ class CardSurah extends StatelessWidget {
         borderRadius: BorderRadius.circular(
           10,
         ),
-        color: Colors.white,
       ),
       child: Column(
         children: [
@@ -44,7 +48,7 @@ class CardSurah extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    "1",
+                    surah.number.toString(),
                     style: txtBlack2,
                   ),
                 ),
@@ -53,21 +57,21 @@ class CardSurah extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    "Name Surah",
+                    surah.nameSurah!,
                     style: txtBlack2,
                   ),
                   const SizedBox(
                     height: 5,
                   ),
                   Text(
-                    "Name English Surah",
+                    surah.nameEnglishSurah!,
                     style: txtBlack2,
                   ),
                   const SizedBox(
                     height: 5,
                   ),
                   Text(
-                    "Arti Ayat",
+                    surah.artiAyat!,
                     style: txtBlack2,
                   ),
                   const SizedBox(
@@ -76,15 +80,35 @@ class CardSurah extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Jumlah Ayat",
-                        style: txtBlack2,
+                      Container(
+                        width: 35,
+                        height: 35,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                          border: Border.all(
+                            width: 1,
+                            color: Colors.grey,
+                          ),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.black,
+                              blurRadius: 1,
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: Text(
+                            surah.jumlahAyat.toString(),
+                            style: txtBlack2,
+                          ),
+                        ),
                       ),
                       const SizedBox(
                         width: 10,
                       ),
                       Text(
-                        "Tempat Turun Ayat",
+                        surah.tempatTurunAyat!,
                         style: txtBlack2,
                       ),
                     ],
@@ -96,7 +120,7 @@ class CardSurah extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Divider(
+          const Divider(
             thickness: 1,
             height: 2,
             color: Colors.grey,

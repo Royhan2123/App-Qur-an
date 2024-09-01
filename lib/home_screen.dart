@@ -1,34 +1,39 @@
+import 'package:app_quran/provider/get_riverpod.dart';
 import 'package:app_quran/widget/card_surah.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final surahListAsycnValue = ref.watch(
+      surahNotifierProvider,
+    );
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 10,
-            vertical: 20,
-          ),
-          child: Column(
-            children: [
-              const CardSurah(),
-              const CardSurah(),
-              const CardSurah(),
-              const CardSurah(),
-              const CardSurah(),
-              const CardSurah(),
-              Container(),
-            ],
-          ),
+      body: surahListAsycnValue.when(
+        data: (surahList) {
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(
+              10,
+            ),
+            child: Column(
+              children: [
+                ...surahList.map(
+                  (surah) => CardSurah(
+                    surah: surah,
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+        error: (error, stackTrace) => Center(
+          child: Text("Error: $error"),
+        ),
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
         ),
       ),
     );
