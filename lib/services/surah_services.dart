@@ -1,4 +1,3 @@
-
 import 'package:app_quran/model/ayat_models.dart';
 import 'package:app_quran/model/surah_models.dart';
 import 'package:dio/dio.dart';
@@ -12,7 +11,6 @@ class SurahServices {
       final response = await dio.get(url);
 
       if (response.statusCode == 200) {
-
         List<dynamic> data = response.data['data']['surahs'];
 
         List<SurahModels> surahList = data.map((json) {
@@ -27,12 +25,13 @@ class SurahServices {
     }
   }
 
-  Future<List<AyatModels>> getAyat(int surahNumber) async {
+  Future<List<AyatModels>> getAyat(
+    int surahNumber,
+  ) async {
     try {
       final response = await dio.get(url);
 
       if (response.statusCode == 200) {
-
         Map<String, dynamic> data = response.data['data'];
 
         List<dynamic> surahs = data['surahs'];
@@ -53,7 +52,6 @@ class SurahServices {
         List<AyatModels> ayatList = ayatData.map((json) {
           return AyatModels.fromJson(json);
         }).toList();
-
 
         return ayatList;
       } else {
