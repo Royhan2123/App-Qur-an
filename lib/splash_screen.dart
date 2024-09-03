@@ -58,7 +58,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 height: 10,
               ),
               Text(
-                "App - Alquran,",
+                "App - Alquran",
                 style: GoogleFonts.poppins(
                   color: Colors.black,
                   fontSize: 20,
