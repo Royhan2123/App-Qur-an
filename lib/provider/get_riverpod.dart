@@ -13,10 +13,8 @@ class SurahNotifier extends _$SurahNotifier {
   Future<List<SurahModels>> build() async {
     try {
       final surahList = await SurahServices().getSurah();
-      print("SurahNotifier: Fetched surah list: $surahList");
       return surahList;
     } catch (e) {
-      print("SurahNotifier Error: $e");
       throw e.toString();
     }
   }
@@ -28,10 +26,8 @@ class AyatNotifier extends _$AyatNotifier {
   Future<List<AyatModels>> build(int surahNumber) async {
     try {
       final ayatList = await SurahServices().getAyat(surahNumber);
-      print("AyatNotifier: Fetched ayat list for surah number $surahNumber: $ayatList");
       return ayatList;
     } catch (e) {
-      print("AyatNotifier Error: $e");
       throw e.toString();
     }
   }
