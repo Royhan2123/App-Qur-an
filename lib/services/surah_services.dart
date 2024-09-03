@@ -8,36 +8,37 @@ class SurahServices {
   final String url = 'http://api.alquran.cloud/v1/quran/edition';
   final dio = Dio();
 
-Future<List<SurahModels>> getSurah() async {
-  try {
-    final response = await dio.get(url);
+  Future<List<SurahModels>> getSurah() async {
+    try {
+      final response = await dio.get(url);
 
-    print("Response status code (getSurah): ${response.statusCode}");
-    print("Full Response data (getSurah): ${response.data}");
+      print("Response status code (getSurah): ${response.statusCode}");
+      print("Full Response data (getSurah): ${response.data}");
 
-    if (response.statusCode == 200) {
-      // Print the specific data section we are interested in
-      print("Data section (getSurah): ${response.data['data']}");
-      print("Surahs section (getSurah): ${response.data['data']['surahs']}");
+      if (response.statusCode == 200) {
+        // Print the specific data section we are interested in
+        print("Data section (getSurah): ${response.data['data']}");
+        print("Surahs section (getSurah): ${response.data['data']['surahs']}");
 
-      // Ensure we are accessing the 'surahs' list correctly
-      List<dynamic> data = response.data['data']['surahs'];
+        // Ensure we are accessing the 'surahs' list correctly
+        List<dynamic> data = response.data['data']['surahs'];
 
-      List<SurahModels> surahList = data.map((json) {
-        return SurahModels.fromJson(json);
-      }).toList();
+        List<SurahModels> surahList = data.map((json) {
+          return SurahModels.fromJson(json);
+        }).toList();
 
-      print("Surah list successfully parsed: $surahList");
+        print("Surah list successfully parsed: $surahList");
 
-      return surahList;
-    } else {
-      throw Exception("Failed to load surah data");
+        return surahList;
+      } else {
+        throw Exception("Failed to load surah data");
+      }
+    } catch (e) {
+      print("Error in getSurah: $e");
+      throw e.toString();
     }
-  } catch (e) {
-    print("Error in getSurah: $e");
-    throw e.toString();
   }
-}
+
   Future<List<AyatModels>> getAyat(int surahNumber) async {
     try {
       final response = await dio.get(url);
@@ -46,9 +47,14 @@ Future<List<SurahModels>> getSurah() async {
       print("Response data (getAyat): ${response.data}");
 
       if (response.statusCode == 200) {
-        List<dynamic> data = response.data['data'];
+        // Mengakses data yang benar dari JSON
+        Map<String, dynamic> data = response.data['data'];
 
-        final surah = data.firstWhere(
+        // Mengakses surahs dari data
+        List<dynamic> surahs = data['surahs'];
+
+        // Mencari surah yang sesuai dengan nomor
+        final surah = surahs.firstWhere(
           (json) => json["number"] == surahNumber,
           orElse: () {
             print("Surah with number $surahNumber not found");
@@ -60,6 +66,7 @@ Future<List<SurahModels>> getSurah() async {
           throw Exception("Surah with number $surahNumber not found");
         }
 
+        // Mengakses ayahs dari surah
         List<dynamic> ayatData = surah['ayahs'];
 
         List<AyatModels> ayatList = ayatData.map((json) {
