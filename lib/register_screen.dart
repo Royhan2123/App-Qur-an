@@ -1,3 +1,4 @@
+import 'package:app_quran/halaman_bottom.dart';
 import 'package:app_quran/login_screen.dart';
 import 'package:app_quran/style/stylesheet.dart';
 import 'package:flutter/material.dart';
@@ -170,7 +171,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               45,
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HalamanBottom(),
+                              ),
+                              (route) => false,
+                            );
+                          },
                           child: Text(
                             "Register",
                             style: txtWhite,

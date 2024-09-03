@@ -21,9 +21,13 @@ class SurahNotifier extends _$SurahNotifier {
 @riverpod
 class AyatNotifier extends _$AyatNotifier {
   @override
-  Future<List<AyatModels>> build(int surahNumber) async {
+  Future<List<AyatModels>> build(
+    int surahNumber,
+  ) async {
     try {
-      final ayatList = await SurahServices().getAyat(surahNumber);
+      final ayatList = await SurahServices().getAyat(
+        surahNumber,
+      );
       return ayatList;
     } catch (e) {
       throw e.toString();

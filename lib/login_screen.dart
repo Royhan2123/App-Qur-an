@@ -142,11 +142,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.push(
+                            Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => const HalamanBottom(),
                               ),
+                              (route) => false,
                             );
                           },
                           child: Text(
