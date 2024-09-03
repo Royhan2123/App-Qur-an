@@ -12,29 +12,18 @@ class SurahServices {
     try {
       final response = await dio.get(url);
 
-      print("Response status code (getSurah): ${response.statusCode}");
-      print("Full Response data (getSurah): ${response.data}");
-
       if (response.statusCode == 200) {
-        // Print the specific data section we are interested in
-        print("Data section (getSurah): ${response.data['data']}");
-        print("Surahs section (getSurah): ${response.data['data']['surahs']}");
 
-        // Ensure we are accessing the 'surahs' list correctly
         List<dynamic> data = response.data['data']['surahs'];
 
         List<SurahModels> surahList = data.map((json) {
           return SurahModels.fromJson(json);
         }).toList();
-
-        print("Surah list successfully parsed: $surahList");
-
         return surahList;
       } else {
         throw Exception("Failed to load surah data");
       }
     } catch (e) {
-      print("Error in getSurah: $e");
       throw e.toString();
     }
   }
@@ -43,21 +32,15 @@ class SurahServices {
     try {
       final response = await dio.get(url);
 
-      print("Response status code (getAyat): ${response.statusCode}");
-      print("Response data (getAyat): ${response.data}");
-
       if (response.statusCode == 200) {
-        // Mengakses data yang benar dari JSON
+
         Map<String, dynamic> data = response.data['data'];
 
-        // Mengakses surahs dari data
         List<dynamic> surahs = data['surahs'];
 
-        // Mencari surah yang sesuai dengan nomor
         final surah = surahs.firstWhere(
           (json) => json["number"] == surahNumber,
           orElse: () {
-            print("Surah with number $surahNumber not found");
             return null;
           },
         );
@@ -66,21 +49,18 @@ class SurahServices {
           throw Exception("Surah with number $surahNumber not found");
         }
 
-        // Mengakses ayahs dari surah
         List<dynamic> ayatData = surah['ayahs'];
 
         List<AyatModels> ayatList = ayatData.map((json) {
           return AyatModels.fromJson(json);
         }).toList();
 
-        print("Ayat list successfully parsed: $ayatList");
 
         return ayatList;
       } else {
         throw Exception("Failed to load ayat data");
       }
     } catch (e) {
-      print("Error in getAyat: $e");
       throw e.toString();
     }
   }
