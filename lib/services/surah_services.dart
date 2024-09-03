@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_print
 
 import 'package:app_quran/model/ayat_models.dart';
 import 'package:app_quran/model/surah_models.dart';
