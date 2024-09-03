@@ -1,7 +1,7 @@
 import 'package:app_quran/model/surah_models.dart';
 import 'package:app_quran/style/stylesheet.dart';
+import 'package:app_quran/ayat_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CardSurah extends StatelessWidget {
   final SurahModels surah;
@@ -12,92 +12,94 @@ class CardSurah extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(
-        bottom: 2,
-      ),
-      padding: const EdgeInsets.all(
-        10,
-      ),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          10,
+    return InkWell(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AyatScreen(
+            surahNumber: surah.number!,
+          ),
         ),
       ),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                  border: Border.all(
-                    width: 1,
-                    color: Colors.grey,
+      child: Container(
+        margin: const EdgeInsets.only(
+          bottom: 2,
+        ),
+        padding: const EdgeInsets.all(
+          10,
+        ),
+        width: double.infinity,
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white,
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.grey,
+                    ),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black,
+                        blurRadius: 1,
+                      ),
+                    ],
                   ),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black,
-                      blurRadius: 1,
+                  child: Center(
+                    child: Text(
+                      surah.number.toString(),
+                      style: txtBlack2,
+                    ),
+                  ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      surah.nameSurah!,
+                      style: txtBlack3,
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      surah.nameEnglishSurah!,
+                      style: txtBlack2,
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      surah.artiAyat!,
+                      style: txtBlack2,
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      surah.tempatTurunAyat!,
+                      style: txtBlack2,
                     ),
                   ],
                 ),
-                child: Center(
-                  child: Text(
-                    surah.number.toString(),
-                    style: txtBlack2,
-                  ),
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    surah.nameSurah!,
-                    style: GoogleFonts.poppins(
-                      color: Colors.black,
-                      fontSize: 20,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    surah.nameEnglishSurah!,
-                    style: txtBlack2,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    surah.artiAyat!,
-                    style: txtBlack2,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    surah.tempatTurunAyat!,
-                    style: txtBlack2,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Divider(
-            thickness: 1,
-            height: 2,
-            color: Colors.grey,
-          )
-        ],
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Divider(
+              thickness: 1,
+              height: 2,
+              color: Colors.grey,
+            )
+          ],
+        ),
       ),
     );
   }

@@ -6,6 +6,11 @@ TextStyle txtBlack = GoogleFonts.poppins(
   fontSize: 15,
 );
 
+TextStyle txtBlack3 = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 20,
+);
+
 TextStyle txtBlack2 = GoogleFonts.poppins(
   color: Colors.black,
   fontSize: 13,

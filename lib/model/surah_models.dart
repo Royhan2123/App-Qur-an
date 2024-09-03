@@ -17,16 +17,24 @@ class SurahModels {
     this.ayat,
   });
 
-  factory SurahModels.fromJson(Map<String, dynamic> json) => SurahModels(
-        number: json['number'],
-        artiAyat: json['englishNameTranslation'],
-        nameEnglishSurah: json['englishName'],
-        nameSurah: json['name'],
-        tempatTurunAyat: json["revelationType"],
-        ayat: (json["ayahs"] as List<dynamic>)
-            .map(
-              (json) => AyatModels.fromJson(json),
-            )
-            .toList(),
-      );
+  factory SurahModels.fromJson(Map<String, dynamic> json) {
+    //ignore: avoid_print
+    print(
+      "Error ${json['ayahs']}",
+    );
+    return SurahModels(
+      number: json['number'],
+      artiAyat: json['englishNameTranslation'],
+      nameEnglishSurah: json['englishName'],
+      nameSurah: json['name'],
+      tempatTurunAyat: json["revelationType"],
+      ayat: (json['ayahs'] is List)
+          ? (json['ayahs'] as List<dynamic>)
+              .map(
+                (ayah) => AyatModels.fromJson(ayah),
+              )
+              .toList()
+          : [],
+    );
+  }
 }
